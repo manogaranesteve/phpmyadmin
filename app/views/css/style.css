@@ -1,0 +1,17 @@
+.col.s4{
+  background-color: dimgray;
+  height: 100%;
+}
+
+.col.s8{
+  background-color: lightblue;
+  height: auto%;
+}
+
+.nav-wrapper.black.darken-3{
+  height: 130%;
+}
+
+.striped{
+  border: solid 5px;
+}

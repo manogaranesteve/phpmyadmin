@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>home</title>
+  <link rel="stylesheet" href="./app/views/css/style.css">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-wrapper black darken-3">
+      <a href="#" class="brand-logo center"><img src="app/views/img/logo.png" align="center" alt="logo" width="15%"></a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="#"></a></li>
+        <li><a href="#"></a></li>
+        <li><a href="#"></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="row">
+    <div class="col s4">
+      <h4 align="center">Base de données</h4>
+      <div class="row">
+        <form action="index.php?action=test" method="post">
+          <div class="input-field col s6">
+            <input placeholder="db name" id="db_name" type="text" class="validate" name="db_name">
+            <label for="db_name"></label>
+          </div>
+          <br><input class="btn waves-effect waves-light" type="submit" name="action">
+        </input>
+      </form>
+    </div>
+    <?php echo '<p align="center"><a href="index.php?action=home">HOME</a></p>';?>
+    <?php
+    $html="";
+    foreach($donnees as $lettre)
+    {
+      $html.="<a href=index.php?action=show&bdd=$lettre>$lettre</a>";
+      $html.="<br>";
+    }
+    echo $html;
+    ?>
+  </div>
+
+  <div class="col s8">
+    <h4 align="center">STATISTIQUES</h4>
+    <table class="striped">
+      <thead>
+        <tr>
+          <th data-field="id">Name table</th>
+          <th data-field="name">nombre de tables</th>
+          <th data-field="price">date de création</th>
+          <th data-field="price">espace mémoire</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        $html2="";
+        $html3="";
+        $html4="";
+        $html5="";
+        foreach($res as $res2)
+        {
+          $html2.="$res2[TABLE_SCHEMA]";
+          $html2.="<br>";
+          $html3.=$res2['COUNT(TABLE_NAME)'];
+          $html3.="<br>";
+          $html4.=$res2['MIN(CREATE_TIME)'];
+          $html4.="<br>";
+          $html5.=$res2['SUM(DATA_LENGTH)'];
+          $html5.="<br>";
+        }
+        echo '<tr>';
+          echo '<td>';
+            echo"$html2";
+            echo '</td>';
+            echo '<td>';
+              echo"$html3";
+              echo '</td>';
+              echo '<td>';
+                echo"$html4";
+                echo '</td>';
+                echo '<td>';
+                  echo"$html5";
+                  echo '</td>';
+                  echo '</tr>';
+                  ?>
+                </tbody>
+              </table>
+            </div>  
+          </div>
+        </body>
+
+        <!--  Scripts-->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="./app/views/js/materialize.js"></script>
+
+        </html>
